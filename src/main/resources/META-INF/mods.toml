@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[39,)"
-license = "MIT"
+license = "LGPLv3"
 
 [[mods]]
 modId = "quicksand"
@@ -8,7 +8,7 @@ version = "${file.jarVersion}"
 displayName = "Quicksand"
 authors="Moodss"
 description = '''
-Adds quicksand. That's it.
+Adds vanilla friendly quicksand. That's it.
 '''
 
 [[dependencies.quicksand]]
