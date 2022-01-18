@@ -18,7 +18,7 @@ import net.moodssmc.quicksand.Reference;
 
 public class ModLevel extends FeatureUtils
 {
-    public static final ResourceLocation QUICKSAND_LAKE = new ResourceLocation(Reference.MOD_ID, "quicksand_lake");
+    public static final ResourceLocation QUICKSAND_LAKE = new ResourceLocation(Reference.MOD_ID, "quicksand_patch");
     private static final ConfiguredFeature<?, ?> QUICKSAND_LAKE_CONFIGURED_FEATURE = Feature.LAKE.configured(new LakeFeature.Configuration(BlockStateProvider.simple(ModBlocks.QUICKSAND.get()), BlockStateProvider.simple(Blocks.SAND)));
     public static final PlacedFeature QUICKSAND_LAKE_PLACED_FEATURE = QUICKSAND_LAKE_CONFIGURED_FEATURE.placed(RarityFilter.onAverageOnceEvery(28), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
 
