@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[39,)"
+license = "MIT"
+
+[[mods]]
+modId = "quicksand"
+version = "${file.jarVersion}"
+displayName = "Quicksand"
+authors="Moodss"
+description = '''
+Adds quicksand. That's it.
+'''
+
+[[dependencies.quicksand]]
+modId = "forge"
+mandatory = true
+versionRange = "[39,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.quicksand]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.1,1.19)"
+ordering = "NONE"
+side = "BOTH"

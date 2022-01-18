@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.moodssmc.quicksand.mixins",
+  "plugin": "net.moodssmc.quicksand.mixins.QuicksandMixinConfigPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "quicksand.refmap.json",
+  "mixins": [
+    "entity.EntityMixin",
+    "entity.LivingEntityMixin",
+    "entity.MobMixin",
+    "entity.PathfinderMobMixin",
+    "entity.ai.goal.LandOnOwnersShoulderGoalMixin",
+    "entity.monster.AbstractSkeletonMixin",
+    "entity.monster.MonsterMixin",
+    "entity.monster.SkeletonMixin",
+    "entity.player.PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
