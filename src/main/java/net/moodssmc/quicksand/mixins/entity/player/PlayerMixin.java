@@ -18,13 +18,13 @@ public abstract class PlayerMixin extends LivingEntityMixin
     @Redirect(method = "setEntityOnShoulder", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isInWater()Z"))
     public boolean onSetEntityOnShoulder$isInWater(Player instance)
     {
-        return instance.isInWater() || ((EntityExt) instance).isInQuicksand();
+        return instance.isInWater() || EntityExt.isInQuicksand(instance);
     }
 
     @Redirect(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isSleeping()Z"))
     public boolean onAiStep$isSleeping(Player instance)
     {
-        return instance.isSleeping() || ((EntityExt) instance).isInQuicksand();
+        return instance.isSleeping() || EntityExt.isInQuicksand(instance);
     }
 
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)

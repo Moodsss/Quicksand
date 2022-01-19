@@ -10,6 +10,8 @@ import net.moodssmc.quicksand.blocks.QuicksandBlock;
 
 public class ClientEvents
 {
+    private static final float[] FOG_COLOR = new float[] {220F / 255F, 210F / 255F, 165F / 255F};
+
     @SubscribeEvent
     public void onFogRenderEvent(EntityViewRenderEvent.RenderFogEvent event)
     {
@@ -36,9 +38,9 @@ public class ClientEvents
         Entity entity = event.getCamera().getEntity();
         if(QuicksandBlock.isEntityFacingBlock(entity.level, entity))
         {
-            event.setRed(220F / 255F);
-            event.setGreen(210F / 255F);
-            event.setBlue(165F / 255F);
+            event.setRed(FOG_COLOR[0]);
+            event.setGreen(FOG_COLOR[1]);
+            event.setBlue(FOG_COLOR[2]);
         }
     }
 

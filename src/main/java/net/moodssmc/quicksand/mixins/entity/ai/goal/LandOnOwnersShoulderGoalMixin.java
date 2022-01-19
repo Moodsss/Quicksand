@@ -13,6 +13,6 @@ public class LandOnOwnersShoulderGoalMixin
     @Redirect(method = "canUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;isInWater()Z"))
     public boolean onCanUse$isInWater(ServerPlayer instance)
     {
-        return instance.isInWater() && ((EntityExt) instance).isInQuicksand();
+        return instance.isInWater() && EntityExt.isInQuicksand(instance);
     }
 }
