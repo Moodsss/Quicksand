@@ -59,10 +59,11 @@ public abstract class LivingEntityMixin extends EntityMixin
     {
         this.level.getProfiler().push("quicksand$quicksand");
         {
-            boolean flag = this.getType().is(ModTags.QUICKSAND_HURTS_EXTRA_TYPES);
+            boolean hurtsExtra = this.getType().is(ModTags.QUICKSAND_HURTS_EXTRA_TYPES);
+            boolean hurtsLess = this.getType().is(ModTags.QUICKSAND_HURTS_LESS_TYPES);
             if (!this.level.isClientSide && this.tickCount % 20 == 0 && this.isInQuicksand && canSuffocateFromQuicksand())
             {
-                float amount = flag ? 5F : 1F;
+                float amount = hurtsExtra ? 5F : (hurtsLess ? 0.5F : 1F);
                 this.hurt(ModDamageSources.QUICKSAND, amount);
             }
         }
