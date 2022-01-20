@@ -37,7 +37,6 @@ public class QuicksandFeature extends AbstractLazyFeature<LakeFeature.Configurat
 
         if(noise >= MIN_THRESHOLD && noise <= MAX_THRESHOLD)
         {
-            LogManager.getLogger().info("Quicksand patch spawned in at: {}", origin);
             this.lastUpdate = BlockPos.asLong(origin.getX(), level.getMinBuildHeight(), origin.getZ());
             return this.feature.place(ctx);
         }
