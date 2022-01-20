@@ -11,6 +11,7 @@ public class ModGameRules
         RULE_QUICKSAND_DAMAGE = GameRules.register("quicksandDamage", GameRules.Category.PLAYER, GameRules.BooleanValue.create(true));
     }
 
+    @SuppressWarnings("EmptyMethod")
     public static void init()
     {
         //Purposely empty

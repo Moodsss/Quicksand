@@ -23,6 +23,7 @@ public class ModTags
         QUICKSAND_IMMUNE_WEARABLES = ItemTags.bind("quicksand:quicksand_immune_wearables");
     }
 
+    @SuppressWarnings("EmptyMethod")
     public static void init()
     {
         //Purposely empty

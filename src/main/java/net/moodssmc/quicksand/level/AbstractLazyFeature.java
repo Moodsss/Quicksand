@@ -2,9 +2,6 @@ package net.moodssmc.quicksand.level;
 
 import com.google.common.base.Preconditions;
 import com.mojang.serialization.Codec;
-import net.minecraft.data.worldgen.SurfaceRuleData;
-import net.minecraft.data.worldgen.biome.OverworldBiomes;
-import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;

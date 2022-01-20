@@ -12,7 +12,7 @@ public class CommonEvents
     {
         if(event.getCategory() == Biome.BiomeCategory.BEACH || event.getCategory() == Biome.BiomeCategory.DESERT)
         {
-            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.QUICKSAND_LAKE_PLACED_FEATURE);
+            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.QUICKSAND_PATCH_PLACED_FEATURE);
         }
     }
 }
