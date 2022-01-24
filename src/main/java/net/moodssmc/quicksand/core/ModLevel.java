@@ -8,38 +8,37 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.moodssmc.quicksand.Reference;
-import net.moodssmc.quicksand.level.QuicksandFeature;
+import net.moodssmc.quicksand.level.QuicksandPlacementFilter;
 
 public class ModLevel extends FeatureUtils
 {
     public static final ResourceLocation QUICKSAND_PATCH = new ResourceLocation(Reference.MOD_ID, "quicksand_patch");
     public static final ResourceKey<NormalNoise.NoiseParameters> QUICKSAND_NOISE;
-    private static final QuicksandFeature QUICKSAND_PATCH_FEATURE;
 
     private static final ConfiguredFeature<?, ?> QUICKSAND_PATCH_CONFIGURED_FEATURE;
     public static final PlacedFeature QUICKSAND_PATCH_PLACED_FEATURE;
 
+    public static final PlacementModifierType<QuicksandPlacementFilter> QUICKSAND_FILTER;
+
     static
     {
         QUICKSAND_NOISE = ResourceKey.create(Registry.NOISE_REGISTRY, new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID));
+        QUICKSAND_FILTER = () -> QuicksandPlacementFilter.CODEC;
 
-        QUICKSAND_PATCH_FEATURE = new QuicksandFeature();
-
-        QUICKSAND_PATCH_CONFIGURED_FEATURE = QUICKSAND_PATCH_FEATURE
+        QUICKSAND_PATCH_CONFIGURED_FEATURE = Feature.LAKE
                 .configured(new LakeFeature.Configuration(
                         BlockStateProvider.simple(ModBlocks.QUICKSAND.get()),
                         BlockStateProvider.simple(Blocks.SAND)));
 
+        //28
         QUICKSAND_PATCH_PLACED_FEATURE = QUICKSAND_PATCH_CONFIGURED_FEATURE
-                .placed(RarityFilter.onAverageOnceEvery(28),
+                .placed(QuicksandPlacementFilter.of(),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome());
@@ -47,8 +46,8 @@ public class ModLevel extends FeatureUtils
 
     public static void init()
     {
+        BuiltinRegistries.register(Registry.PLACEMENT_MODIFIERS, QUICKSAND_PATCH, QUICKSAND_FILTER);
         BuiltinRegistries.register(BuiltinRegistries.NOISE, QUICKSAND_NOISE, new NormalNoise.NoiseParameters(6, 1.0, 1.0, 1.0, 1.0));
-        BuiltinRegistries.register(Registry.FEATURE, QUICKSAND_PATCH, QUICKSAND_PATCH_FEATURE);
         BuiltinRegistries.register(BuiltinRegistries.CONFIGURED_FEATURE, QUICKSAND_PATCH, QUICKSAND_PATCH_CONFIGURED_FEATURE);
         BuiltinRegistries.register(BuiltinRegistries.PLACED_FEATURE, QUICKSAND_PATCH, QUICKSAND_PATCH_PLACED_FEATURE);
     }
