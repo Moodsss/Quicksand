@@ -11,7 +11,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.moodssmc.quicksand.core.ModLevel;
-import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 public class QuicksandFeature extends AbstractLazyFeature<LakeFeature.Configuration>
@@ -21,6 +20,9 @@ public class QuicksandFeature extends AbstractLazyFeature<LakeFeature.Configurat
 
     protected final Feature<LakeFeature.Configuration> feature;
     protected long lastUpdate;
+
+    private long prevSeed;
+    protected NormalNoise noise;
 
     public QuicksandFeature()
     {
@@ -33,7 +35,7 @@ public class QuicksandFeature extends AbstractLazyFeature<LakeFeature.Configurat
     {
         BlockPos origin = ctx.origin();
         WorldGenLevel level = ctx.level();
-        double noise = createNoise(level).getValue(origin.getX(), origin.getY(), origin.getZ());
+        double noise = getOrUpdateNoise(level).getValue(origin.getX(), origin.getY(), origin.getZ());
 
         if(noise >= MIN_THRESHOLD && noise <= MAX_THRESHOLD)
         {
@@ -44,10 +46,16 @@ public class QuicksandFeature extends AbstractLazyFeature<LakeFeature.Configurat
         return false;
     }
 
-    protected static NormalNoise createNoise(WorldGenLevel level)
+    protected NormalNoise getOrUpdateNoise(WorldGenLevel level)
     {
-        return Noises.instantiate(RegistryAccess.builtin().ownedRegistry(Registry.NOISE_REGISTRY).orElseThrow(),
-                WorldgenRandom.Algorithm.XOROSHIRO.newInstance(level.getSeed()).forkPositional(), ModLevel.QUICKSAND_NOISE);
+        long newSeed = level.getSeed();
+        if(this.prevSeed != newSeed)
+        {
+            this.prevSeed = newSeed;
+            this.noise = Noises.instantiate(RegistryAccess.builtin().ownedRegistry(Registry.NOISE_REGISTRY).orElseThrow(),
+                    WorldgenRandom.Algorithm.XOROSHIRO.newInstance(this.prevSeed).forkPositional(), ModLevel.QUICKSAND_NOISE);
+        }
+        return this.noise;
     }
 
     @Override
