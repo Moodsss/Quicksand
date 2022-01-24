@@ -6,6 +6,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.moodssmc.quicksand.Config;
 import net.moodssmc.quicksand.blocks.QuicksandBlock;
 
 public class ClientEvents
@@ -16,7 +17,7 @@ public class ClientEvents
     public void onFogRenderEvent(EntityViewRenderEvent.RenderFogEvent event)
     {
         Entity entity = event.getCamera().getEntity();
-        if(QuicksandBlock.isEntityFacingBlock(entity.level, entity))
+        if(QuicksandBlock.isEntityFacingBlock(entity.level, entity) && !Config.INSTANCE.disableQuicksandFog.get())
         {
             float start = 0F;
             float end = 2F;
@@ -36,7 +37,7 @@ public class ClientEvents
     public void onFogColorsEvent(EntityViewRenderEvent.FogColors event)
     {
         Entity entity = event.getCamera().getEntity();
-        if(QuicksandBlock.isEntityFacingBlock(entity.level, entity))
+        if(QuicksandBlock.isEntityFacingBlock(entity.level, entity) && !Config.INSTANCE.disableQuicksandFog.get())
         {
             event.setRed(FOG_COLOR[0]);
             event.setGreen(FOG_COLOR[1]);
@@ -51,7 +52,7 @@ public class ClientEvents
         if(event.getCamera().getEntity() != null)
         {
             Entity entity = event.getCamera().getEntity();
-            if(QuicksandBlock.isEntityFacingBlock(entity.level, entity))
+            if(QuicksandBlock.isEntityFacingBlock(entity.level, entity) && !Config.INSTANCE.disableQuicksandFog.get())
             {
                 double fov = event.getFOV();
                 fov *= Mth.lerp(Minecraft.getInstance().options.fovEffectScale, 1.0F, 0.85714287F);

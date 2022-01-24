@@ -77,11 +77,11 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-
+    maven { url = "https://www.cursemaven.com" }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.36'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.59'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

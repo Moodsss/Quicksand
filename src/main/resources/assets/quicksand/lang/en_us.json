@@ -3,5 +3,6 @@
   "item.quicksand.quicksand_bucket": "Quicksand Bucket",
   "block.quicksand.quicksand_cauldron": "Quicksand Cauldron",
   "death.attack.quicksand": "%s drowned in quicksand",
-  "gamerule.quicksandDamage": "Deal quicksand damage"
+  "gamerule.quicksandDamage": "Deal quicksand damage",
+  "config.quicksand.disableFog": "Disable quicksand fog"
 }
