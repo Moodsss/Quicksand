@@ -25,7 +25,7 @@ public class ClientEvents
             if (entity.isSpectator())
             {
                 start = -8.0F;
-                end = Minecraft.getInstance().getFrameTime() * 0.5F;
+                end = Minecraft.getInstance().options.renderDistance * 0.5F;
             }
 
             RenderSystem.setShaderFogStart(start);
