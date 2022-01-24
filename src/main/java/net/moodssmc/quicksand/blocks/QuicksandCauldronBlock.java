@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.moodssmc.quicksand.core.QuicksandCauldronInteraction;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public class QuicksandCauldronBlock extends AbstractCauldronBlock
 {
     public QuicksandCauldronBlock()

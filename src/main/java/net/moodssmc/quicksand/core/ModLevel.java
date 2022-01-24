@@ -31,12 +31,12 @@ public class ModLevel extends FeatureUtils
         QUICKSAND_NOISE = ResourceKey.create(Registry.NOISE_REGISTRY, new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID));
         QUICKSAND_FILTER = () -> QuicksandPlacementFilter.CODEC;
 
+        //noinspection deprecation
         QUICKSAND_PATCH_CONFIGURED_FEATURE = Feature.LAKE
                 .configured(new LakeFeature.Configuration(
                         BlockStateProvider.simple(ModBlocks.QUICKSAND.get()),
                         BlockStateProvider.simple(Blocks.SAND)));
 
-        //28
         QUICKSAND_PATCH_PLACED_FEATURE = QUICKSAND_PATCH_CONFIGURED_FEATURE
                 .placed(QuicksandPlacementFilter.of(),
                         InSquarePlacement.spread(),

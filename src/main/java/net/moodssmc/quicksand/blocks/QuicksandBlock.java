@@ -35,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.Random;
 
-@SuppressWarnings("deprecated")
+@SuppressWarnings("deprecation")
 public class QuicksandBlock extends SandBlock implements BucketPickup
 {
     private static final BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos();
