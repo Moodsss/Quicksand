@@ -187,7 +187,7 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
     }
 
     //[Vanilla Copy]
-    public static boolean isEntityFacingBlock(@NotNull BlockGetter level, @NotNull Entity entity)
+    public static boolean isEntityFacingBlock(@NotNull Entity entity)
     {
         double eyeHeight = entity.getEyeY() - 0.11111111D;
 
@@ -200,6 +200,6 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
             }
         }
 
-        return level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ())).is(ModBlocks.QUICKSAND.get());
+        return entity.level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ())).is(ModBlocks.QUICKSAND.get());
     }
 }
