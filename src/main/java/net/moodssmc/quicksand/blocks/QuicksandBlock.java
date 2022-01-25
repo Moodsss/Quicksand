@@ -134,9 +134,9 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
                 }
 
                 boolean flag = entity instanceof FallingBlockEntity;
-                if (flag || canWalkUpon(entity) && ctx.isAbove(FULL_SHAPE, pos, false) && !entity.isDescending())
+                if (flag || canWalkUpon(entity) && entityCtx.isAbove(FULL_SHAPE, pos, false) && !entity.isDescending())
                 {
-                    return super.getCollisionShape(state, level, pos, ctx);
+                    return super.getCollisionShape(state, level, pos, entityCtx);
                 }
             }
         }

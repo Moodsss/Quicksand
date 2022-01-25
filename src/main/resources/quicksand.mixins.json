@@ -14,9 +14,13 @@
     "entity.monster.AbstractSkeletonMixin",
     "entity.monster.MonsterMixin",
     "entity.monster.SkeletonMixin",
+    "entity.monster.ZombieMixin",
     "entity.player.PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "client.AbstractZombieRendererMixin"
+  ]
 }

@@ -35,7 +35,7 @@ public class CommonSetup
                 if (dispensibleItem.emptyContents(null, level, pos, null))
                 {
                     dispensibleItem.checkExtraContent(null, level, stack, pos);
-                    return new ItemStack(Items.BUCKET);
+                    return new ItemStack(Items.BUCKET, 1, stack.getTag());
                 }
 
                 return defaultDispenseItemBehavior.dispense(source, stack);

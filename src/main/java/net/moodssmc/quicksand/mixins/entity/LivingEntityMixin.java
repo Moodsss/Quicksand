@@ -31,6 +31,9 @@ public abstract class LivingEntityMixin extends EntityMixin
     @Shadow
     protected boolean jumping;
 
+    @Shadow
+    public abstract boolean isAlive();
+
     @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isInWaterRainOrBubble()Z"))
     public boolean onBaseTick$isInWaterRainOrBubble(LivingEntity instance)
     {

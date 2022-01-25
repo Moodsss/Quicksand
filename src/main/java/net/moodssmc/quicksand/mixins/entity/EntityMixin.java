@@ -1,5 +1,7 @@
 package net.moodssmc.quicksand.mixins.entity;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -9,6 +11,7 @@ import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.EntityExt;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -35,6 +38,19 @@ public abstract class EntityMixin implements EntityExt
 
     @Shadow
     public boolean horizontalCollision;
+
+    @Shadow
+    @Final
+    protected SynchedEntityData entityData;
+
+    @Shadow
+    public abstract boolean isSilent();
+
+    @Shadow
+    public abstract BlockPos blockPosition();
+
+    @Shadow
+    public abstract SynchedEntityData getEntityData();
 
     @Unique
     protected boolean isInQuicksand;
