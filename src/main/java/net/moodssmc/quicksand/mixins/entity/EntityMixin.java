@@ -82,7 +82,7 @@ public abstract class EntityMixin implements EntityExt
     )
     public void onBaseTick$updateInWaterStateAndDoFluidPushing(CallbackInfo ci)
     {
-        this.isInQuicksand = QuicksandBlock.isEntityFacingBlock(((Entity) (Object) this));
+        this.isInQuicksand = QuicksandBlock.isEntityInside(((Entity) (Object) this));
     }
 
     @Unique

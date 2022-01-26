@@ -10,17 +10,20 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -31,6 +34,7 @@ import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.core.ModItems;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.Random;
@@ -171,6 +175,37 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
         return Optional.of(SoundEvents.SAND_BREAK);
     }
 
+    @Nullable
+    @Override
+    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
+    {
+        return BlockPathTypes.POWDER_SNOW;
+    }
+
+    @Override
+    public boolean isScaffolding(BlockState state, LevelReader world, BlockPos pos, LivingEntity entity)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isSlimeBlock(BlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isStickyBlock(BlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isPortalFrame(BlockState state, BlockGetter world, BlockPos pos)
+    {
+        return false;
+    }
+
     @Override
     public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull PathComputationType type)
     {
@@ -187,7 +222,7 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
     }
 
     //[Vanilla Copy]
-    public static boolean isEntityFacingBlock(@NotNull Entity entity)
+    public static boolean isEntityInside(@NotNull Entity entity)
     {
         double eyeHeight = entity.getEyeY() - 0.11111111D;
 
