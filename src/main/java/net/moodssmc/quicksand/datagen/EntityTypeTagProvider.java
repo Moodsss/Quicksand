@@ -18,6 +18,6 @@ public class EntityTypeTagProvider extends EntityTypeTagsProvider
     @Override
     protected void addTags()
     {
-        this.tag(ModTags.QUICKSAND_WALKABLE_MOBS).add(EntityType.WITHER);
+        this.tag(ModTags.QUICKSAND_WALKABLE_MOBS).add(EntityType.WITHER).add(EntityType.HUSK);
     }
 }
