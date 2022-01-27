@@ -59,7 +59,7 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
         Random random = level.getRandom();
         if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this))
         {
-            entity.makeStuckInBlock(state, new Vec3(0.6F, 0.4D, 0.6F));
+            entity.makeStuckInBlock(state, new Vec3(0.9F, 1.5D, 0.9F));
             if (level.isClientSide)
             {
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
