@@ -7,6 +7,7 @@
   "refmap": "quicksand.refmap.json",
   "mixins": [
     "entity.EntityMixin",
+    "entity.EntityTypeMixin",
     "entity.LivingEntityMixin",
     "entity.MobMixin",
     "entity.PathfinderMobMixin",
@@ -15,13 +16,16 @@
     "entity.monster.MonsterMixin",
     "entity.monster.SkeletonMixin",
     "entity.monster.ZombieMixin",
-    "entity.player.PlayerMixin"
+    "entity.player.PlayerMixin",
+    "level.ChunkHeightAndBiomeFixMixin",
+    "level.block.PointedDripstoneBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
     "client.AbstractZombieRendererMixin",
-    "client.CameraMixin"
+    "client.CameraMixin",
+    "client.ShadersMixin"
   ]
 }
