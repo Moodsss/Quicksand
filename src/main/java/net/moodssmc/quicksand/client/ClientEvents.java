@@ -8,6 +8,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.moodssmc.quicksand.Config;
 import net.moodssmc.quicksand.util.CameraExt;
+import net.moodssmc.quicksand.util.OptifineHelper;
 
 public class ClientEvents
 {
@@ -30,8 +31,15 @@ public class ClientEvents
                     end = Minecraft.getInstance().options.renderDistance * 0.5F;
                 }
 
+                OptifineHelper.setFogNonStandard();
                 RenderSystem.setShaderFogStart(start);
                 RenderSystem.setShaderFogEnd(end);
+
+                if(OptifineHelper.isShadersEnabled())
+                {
+                    OptifineHelper.setShaderFogStart(start);
+                    OptifineHelper.setShaderFogEnd(end);
+                }
             }
         }
     }
@@ -47,6 +55,11 @@ public class ClientEvents
                 event.setRed(FOG_COLOR[0]);
                 event.setGreen(FOG_COLOR[1]);
                 event.setBlue(FOG_COLOR[2]);
+
+                if(OptifineHelper.isShadersEnabled())
+                {
+                    OptifineHelper.setShaderFogColor(FOG_COLOR[0], FOG_COLOR[1], FOG_COLOR[2]);
+                }
             }
         }
     }
