@@ -14,8 +14,13 @@ public class EntityTypeMixin
     @Inject(method = "isBlockDangerous", at = @At("RETURN"), cancellable = true)
     public void onIsBlockDangerous(BlockState state, CallbackInfoReturnable<Boolean> cir)
     {
-        if(!cir.getReturnValue() && state.is(ModBlocks.QUICKSAND.get()))
+        if(state.is(ModBlocks.QUICKSAND.get()))
         {
+            if((Object) this == EntityType.HUSK)
+            {
+                cir.setReturnValue(false);
+            }
+
             cir.setReturnValue(true);
         }
     }
