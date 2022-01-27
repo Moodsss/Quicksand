@@ -6,11 +6,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "quicksand.refmap.json",
   "mixins": [
+    "entity.AbstractArrowMixin",
     "entity.EntityMixin",
     "entity.EntityTypeMixin",
     "entity.LivingEntityMixin",
     "entity.MobMixin",
     "entity.PathfinderMobMixin",
+    "entity.StrayMixin",
     "entity.ai.goal.LandOnOwnersShoulderGoalMixin",
     "entity.monster.AbstractSkeletonMixin",
     "entity.monster.MonsterMixin",
