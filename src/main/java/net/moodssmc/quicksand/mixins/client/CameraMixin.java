@@ -6,7 +6,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.CameraExt;
 import org.spongepowered.asm.mixin.Mixin;

@@ -30,7 +30,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.core.ModItems;
 import org.jetbrains.annotations.NotNull;

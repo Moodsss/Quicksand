@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.moodssmc.quicksand.core.QuicksandCauldronInteraction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
