@@ -19,7 +19,7 @@ public class CommonSetup
         QuicksandCauldronInteraction.init();
         ModLevel.init();
 
-        DispenserBlock.registerBehavior(ModItems.QUICKSAND_BUCKET::get, new DispenseItemBehavior() {
+        DispenseItemBehavior behavior =  new DispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
             @Override
@@ -40,7 +40,10 @@ public class CommonSetup
 
                 return defaultDispenseItemBehavior.dispense(source, stack);
             }
-        });
+        };
+
+        DispenserBlock.registerBehavior(ModItems.QUICKSAND_BUCKET::get, behavior);
+        DispenserBlock.registerBehavior(ModItems.RED_QUICKSAND_BUCKET::get, behavior);
     }
 
     private CommonSetup()

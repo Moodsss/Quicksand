@@ -13,10 +13,17 @@ public interface QuicksandCauldronInteraction extends CauldronInteraction
     CauldronInteraction FILL_QUICKSAND = (state, world, pos, player, hand, stack) ->
             CauldronInteraction.emptyBucket(world, pos, player, hand, stack, ModBlocks.QUICKSAND_CAULDRON.get().defaultBlockState(), SoundEvents.SAND_PLACE);
 
+    CauldronInteraction FILL_RED_QUICKSAND = (state, world, pos, player, hand, stack) ->
+            CauldronInteraction.emptyBucket(world, pos, player, hand, stack, ModBlocks.QUICKSAND_CAULDRON_RED.get().defaultBlockState(), SoundEvents.SAND_PLACE);
+
     CauldronInteraction EMPTY_QUICKSAND = (state, world, pos, player, hand, stack) ->
             CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, new ItemStack(ModItems.QUICKSAND_BUCKET.get()), blockState -> true, SoundEvents.SAND_BREAK);
 
-    Map<Item, CauldronInteraction> INSTANCE = CauldronInteraction.newInteractionMap();
+    CauldronInteraction EMPTY_RED_QUICKSAND = (state, world, pos, player, hand, stack) ->
+            CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, new ItemStack(ModItems.RED_QUICKSAND_BUCKET.get()), blockState -> true, SoundEvents.SAND_BREAK);
+
+    Map<Item, CauldronInteraction> QUICKSAND = CauldronInteraction.newInteractionMap();
+    Map<Item, CauldronInteraction> RED_QUICKSAND = CauldronInteraction.newInteractionMap();
 
     static void init()
     {
@@ -25,8 +32,15 @@ public interface QuicksandCauldronInteraction extends CauldronInteraction
         LAVA.put(ModItems.QUICKSAND_BUCKET.get(), FILL_QUICKSAND);
         POWDER_SNOW.put(ModItems.QUICKSAND_BUCKET.get(), FILL_QUICKSAND);
 
-        INSTANCE.put(Items.BUCKET, EMPTY_QUICKSAND);
+        EMPTY.put(ModItems.RED_QUICKSAND_BUCKET.get(), FILL_RED_QUICKSAND);
+        WATER.put(ModItems.RED_QUICKSAND_BUCKET.get(), FILL_RED_QUICKSAND);
+        LAVA.put(ModItems.RED_QUICKSAND_BUCKET.get(), FILL_RED_QUICKSAND);
+        POWDER_SNOW.put(ModItems.RED_QUICKSAND_BUCKET.get(), FILL_RED_QUICKSAND);
 
-        CauldronInteraction.addDefaultInteractions(INSTANCE);
+        QUICKSAND.put(Items.BUCKET, EMPTY_QUICKSAND);
+        RED_QUICKSAND.put(Items.BUCKET, EMPTY_RED_QUICKSAND);
+
+        CauldronInteraction.addDefaultInteractions(QUICKSAND);
+        CauldronInteraction.addDefaultInteractions(RED_QUICKSAND);
     }
 }

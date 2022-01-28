@@ -13,7 +13,12 @@ public class ModBlocks
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, Reference.MOD_ID);
 
     public static final RegistryObject<Block> QUICKSAND = REGISTER.register("quicksand", QuicksandBlock::new);
-    public static final RegistryObject<Block> QUICKSAND_CAULDRON = REGISTER.register("quicksand_cauldron", QuicksandCauldronBlock::new);
+    public static final RegistryObject<Block> RED_QUICKSAND = REGISTER.register("red_quicksand", QuicksandBlock::new);
+
+    public static final RegistryObject<Block> QUICKSAND_CAULDRON = REGISTER.register("quicksand_cauldron",
+            () -> new QuicksandCauldronBlock(QuicksandCauldronInteraction.QUICKSAND));
+    public static final RegistryObject<Block> RED_QUICKSAND_CAULDRON = REGISTER.register("red_quicksand_cauldron",
+            () -> new QuicksandCauldronBlock(QuicksandCauldronInteraction.RED_QUICKSAND));
 
     private ModBlocks()
     {

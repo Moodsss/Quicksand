@@ -14,5 +14,9 @@ public class CommonEvents
         {
             event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.QUICKSAND_PATCH_PLACED_FEATURE);
         }
+        else if(event.getCategory() == Biome.BiomeCategory.MESA)
+        {
+            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.RED_QUICKSAND_PATCH_PLACED_FEATURE);
+        }
     }
 }

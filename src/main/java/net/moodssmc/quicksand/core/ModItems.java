@@ -9,18 +9,17 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.moodssmc.quicksand.Reference;
+import net.moodssmc.quicksand.items.BucketItem;
 
 public class ModItems
 {
     public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
 
     public static final RegistryObject<Item> QUICKSAND_BUCKET = REGISTER.register("quicksand_bucket",
-            () -> new SolidBucketItem(ModBlocks.QUICKSAND.get(), SoundEvents.SAND_PLACE, new Item.Properties().setNoRepair().stacksTo(1).tab(CreativeModeTab.TAB_MISC)) {
-                @Override
-                public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-                    return false;
-                }
-            });
+            () -> new BucketItem(ModBlocks.QUICKSAND.get()));
+
+    public static final RegistryObject<Item> RED_QUICKSAND_BUCKET = REGISTER.register("red_quicksand_bucket",
+            () -> new BucketItem(ModBlocks.QUICKSAND_RED.get()));
 
     private ModItems()
     {

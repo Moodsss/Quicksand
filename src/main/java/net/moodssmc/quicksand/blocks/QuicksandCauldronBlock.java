@@ -1,6 +1,8 @@
 package net.moodssmc.quicksand.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -9,12 +11,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.moodssmc.quicksand.core.QuicksandCauldronInteraction;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 @SuppressWarnings("deprecation")
 public class QuicksandCauldronBlock extends AbstractCauldronBlock
 {
-    public QuicksandCauldronBlock()
+    public QuicksandCauldronBlock(Map<Item, CauldronInteraction> interaction)
     {
-        super(BlockBehaviour.Properties.copy(Blocks.CAULDRON), QuicksandCauldronInteraction.INSTANCE);
+        super(BlockBehaviour.Properties.copy(Blocks.CAULDRON), interaction);
     }
 
     @Override
