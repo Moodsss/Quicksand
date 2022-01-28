@@ -3,9 +3,10 @@ package net.moodssmc.quicksand.mixins.client;
 import net.minecraft.client.Camera;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.moodssmc.quicksand.core.ModBlocks;
+import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.CameraExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +29,7 @@ public abstract class CameraMixin implements CameraExt
     private BlockGetter level;
 
     @Override
-    public boolean isFacingQuicksand()
+    public BlockState getFacingBlockState()
     {
         if(this.initialized)
         {
@@ -43,10 +44,14 @@ public abstract class CameraMixin implements CameraExt
                 Vec3 position = this.position.add(vec);
                 BlockPos pos = new BlockPos(position);
                 BlockState state = this.level.getBlockState(pos);
-                return state.is(ModBlocks.QUICKSAND.get());
+
+                if(state.is(ModTags.QUICKSAND))
+                {
+                    return state;
+                }
             }
         }
 
-        return false;
+        return Blocks.VOID_AIR.defaultBlockState();
     }
 }

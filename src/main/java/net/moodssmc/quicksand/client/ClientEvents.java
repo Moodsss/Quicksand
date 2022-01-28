@@ -4,41 +4,48 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.moodssmc.quicksand.Config;
+import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.util.CameraExt;
 import net.moodssmc.quicksand.util.OptifineHelper;
 
 public class ClientEvents
 {
-    private static final float[] FOG_COLOR = new float[] {220F / 255F, 210F / 255F, 165F / 255F};
+    private static final BlockState VOID_AIR = Blocks.VOID_AIR.defaultBlockState();
 
     @SubscribeEvent
     public void onFogRenderEvent(EntityViewRenderEvent.RenderFogEvent event)
     {
-        Camera camera = event.getCamera();
-        if(camera != null)
+        if(!Config.INSTANCE.disableQuicksandFog.get())
         {
-            if(CameraExt.isFacingQuicksand(camera) && !Config.INSTANCE.disableQuicksandFog.get())
+            Camera camera = event.getCamera();
+            if(camera != null)
             {
-                float start = 0F;
-                float end = 2F;
-
-                if (camera.getEntity().isSpectator())
+                BlockState facingState = CameraExt.getFacingBlockState(camera);
+                if(facingState != VOID_AIR)
                 {
-                    start = -8.0F;
-                    end = Minecraft.getInstance().options.renderDistance * 0.5F;
-                }
+                    float start = 0F;
+                    float end = 2F;
 
-                OptifineHelper.setFogNonStandard();
-                RenderSystem.setShaderFogStart(start);
-                RenderSystem.setShaderFogEnd(end);
+                    if (camera.getEntity().isSpectator())
+                    {
+                        start = -8.0F;
+                        end = Minecraft.getInstance().options.renderDistance * 0.5F;
+                    }
 
-                if(OptifineHelper.isShadersEnabled())
-                {
-                    OptifineHelper.setShaderFogStart(start);
-                    OptifineHelper.setShaderFogEnd(end);
+                    OptifineHelper.setFogNonStandard();
+                    RenderSystem.setShaderFogStart(start);
+                    RenderSystem.setShaderFogEnd(end);
+
+                    if(OptifineHelper.isShadersEnabled())
+                    {
+                        OptifineHelper.setShaderFogStart(start);
+                        OptifineHelper.setShaderFogEnd(end);
+                    }
                 }
             }
         }
@@ -47,18 +54,28 @@ public class ClientEvents
     @SubscribeEvent
     public void onFogColorsEvent(EntityViewRenderEvent.FogColors event)
     {
-        Camera camera = event.getCamera();
-        if(camera != null)
+        if(!Config.INSTANCE.disableQuicksandFog.get())
         {
-            if(CameraExt.isFacingQuicksand(camera) && !Config.INSTANCE.disableQuicksandFog.get())
+            Camera camera = event.getCamera();
+            if(camera != null)
             {
-                event.setRed(FOG_COLOR[0]);
-                event.setGreen(FOG_COLOR[1]);
-                event.setBlue(FOG_COLOR[2]);
-
-                if(OptifineHelper.isShadersEnabled())
+                BlockState facingState = CameraExt.getFacingBlockState(camera);
+                if(facingState != VOID_AIR)
                 {
-                    OptifineHelper.setShaderFogColor(FOG_COLOR[0], FOG_COLOR[1], FOG_COLOR[2]);
+                    float[] fogColor = ((QuicksandBlock) facingState.getBlock()).getFogColor();
+
+                    float red = fogColor[0];
+                    float green = fogColor[1];
+                    float blue = fogColor[2];
+
+                    event.setRed(red);
+                    event.setGreen(green);
+                    event.setBlue(green);
+
+                    if(OptifineHelper.isShadersEnabled())
+                    {
+                        OptifineHelper.setShaderFogColor(red, green, blue);
+                    }
                 }
             }
         }
@@ -67,15 +84,20 @@ public class ClientEvents
     @SubscribeEvent
     public void onFieldOfView(EntityViewRenderEvent.FieldOfView event)
     {
-        Camera camera = event.getCamera();
-        if(camera != null)
+        if(!Config.INSTANCE.disableQuicksandFog.get())
         {
-            if(CameraExt.isFacingQuicksand(camera) && !Config.INSTANCE.disableQuicksandFog.get())
+            Camera camera = event.getCamera();
+            if(camera != null)
             {
-                double fov = event.getFOV();
-                fov *= Mth.lerp(Minecraft.getInstance().options.fovEffectScale, 1.0F, 0.85714287F);
-                event.setFOV(fov);
+                BlockState state = CameraExt.getFacingBlockState(camera);
+                if(state != VOID_AIR)
+                {
+                    double fov = event.getFOV();
+                    fov *= Mth.lerp(Minecraft.getInstance().options.fovEffectScale, 1.0F, 0.85714287F);
+                    event.setFOV(fov);
+                }
             }
         }
     }
+
 }

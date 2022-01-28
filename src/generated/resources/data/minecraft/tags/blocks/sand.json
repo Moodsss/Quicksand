@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "quicksand:quicksand"
+    "quicksand:quicksand",
+    "quicksand:red_quicksand"
   ]
 }

@@ -30,7 +30,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.core.ModItems;
 import org.jetbrains.annotations.NotNull;
@@ -48,9 +47,12 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0D, 0D, 0D, 1D, 0.9D, 1D);
 
-    public QuicksandBlock()
+    private final float[] fogColor;
+
+    public QuicksandBlock(int dustColor, float[] fogColor)
     {
-        super(14076051, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        super(dustColor, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        this.fogColor = fogColor;
     }
 
     @Override
@@ -235,6 +237,12 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
             }
         }
 
-        return entity.level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ())).is(ModBlocks.QUICKSAND.get());
+        BlockState state = entity.level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ()));
+        return state.is(ModTags.QUICKSAND);
+    }
+
+    public float[] getFogColor()
+    {
+        return this.fogColor;
     }
 }

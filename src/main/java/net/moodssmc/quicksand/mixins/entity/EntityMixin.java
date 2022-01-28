@@ -8,7 +8,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.moodssmc.quicksand.blocks.QuicksandBlock;
-import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.EntityExt;
 import org.spongepowered.asm.mixin.Final;
@@ -70,7 +69,7 @@ public abstract class EntityMixin implements EntityExt
     )
     public boolean onMove$is(BlockState instance, Block block)
     {
-        return instance.is(block) || instance.is(ModBlocks.QUICKSAND.get());
+        return instance.is(block) || instance.is(ModTags.QUICKSAND);
     }
 
     @Inject(method = "baseTick",

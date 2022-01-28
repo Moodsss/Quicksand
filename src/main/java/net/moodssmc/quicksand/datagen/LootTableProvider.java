@@ -49,7 +49,9 @@ public class LootTableProvider extends net.minecraft.data.loot.LootTableProvider
         protected void addTables()
         {
             this.dropOther(ModBlocks.QUICKSAND_CAULDRON.get(), Blocks.CAULDRON);
+            this.dropOther(ModBlocks.RED_QUICKSAND_CAULDRON.get(), Blocks.CAULDRON);
             this.add(ModBlocks.QUICKSAND.get(), noDrop());
+            this.add(ModBlocks.RED_QUICKSAND.get(), noDrop());
         }
 
         @Override

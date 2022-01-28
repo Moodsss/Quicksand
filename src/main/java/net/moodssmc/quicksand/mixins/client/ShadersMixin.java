@@ -2,6 +2,8 @@ package net.moodssmc.quicksand.mixins.client;
 
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.moodssmc.quicksand.util.CameraExt;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -26,7 +28,8 @@ public class ShadersMixin
     )
     private static void onBeginRender$getFluidInCamera(Minecraft minecraft, Camera activeRenderInfo, float partialTicks, long finishTimeNano, CallbackInfo ci)
     {
-        if(CameraExt.isFacingQuicksand(activeRenderInfo))
+        BlockState facingState = CameraExt.getFacingBlockState(activeRenderInfo);
+        if(facingState != Blocks.VOID_AIR.defaultBlockState())
         {
             isEyeInWater = 3;
         }
