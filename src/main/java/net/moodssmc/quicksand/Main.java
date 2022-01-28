@@ -4,7 +4,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,6 +29,7 @@ public class Main
         ModItems.REGISTER.register(bus);
         ModTags.init();
         ModGameRules.init();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
         bus.addListener(this::onCommonSetup);
         bus.addListener(this::onClientSetup);
         bus.addListener(this::onDataSetup);

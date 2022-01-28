@@ -9,15 +9,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.moodssmc.quicksand.Config;
-import net.moodssmc.quicksand.core.ModBlocks;
+import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.util.CameraExt;
 import net.moodssmc.quicksand.util.OptifineHelper;
 
 public class ClientEvents
 {
-    public static final float[] FOG_COLOR = new float[] {220F / 0xFF, 210F / 0xFF, 165F / 0xFF};
-    public static final float[] RED_FOG_COLOR = new float[] {255F / 0xFF, 195F / 0xFF, 140F / 0xFF};
-
     private static final BlockState VOID_AIR = Blocks.VOID_AIR.defaultBlockState();
 
     @SubscribeEvent
@@ -65,9 +62,11 @@ public class ClientEvents
                 BlockState facingState = CameraExt.getFacingBlockState(camera);
                 if(facingState != VOID_AIR)
                 {
-                    float red = facingState.is(ModBlocks.QUICKSAND.get()) ? FOG_COLOR[0] : RED_FOG_COLOR[0];
-                    float green = facingState.is(ModBlocks.QUICKSAND.get()) ? FOG_COLOR[1] : RED_FOG_COLOR[1];
-                    float blue = facingState.is(ModBlocks.QUICKSAND.get()) ? FOG_COLOR[2] : RED_FOG_COLOR[2];
+                    float[] fogColor = ((QuicksandBlock) facingState.getBlock()).getFogColor();
+
+                    float red = fogColor[0];
+                    float green = fogColor[1];
+                    float blue = fogColor[2];
 
                     event.setRed(red);
                     event.setGreen(green);
