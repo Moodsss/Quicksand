@@ -50,7 +50,7 @@ public class ModLevel extends FeatureUtils
 
         RED_QUICKSAND_PATCH_CONFIGURED_FEATURE = Feature.LAKE
                 .configured(new LakeFeature.Configuration(
-                        BlockStateProvider.simple(ModBlocks.QUICKSAND_RED.get()),
+                        BlockStateProvider.simple(ModBlocks.RED_QUICKSAND.get()),
                         BlockStateProvider.simple(Blocks.RED_SAND)));
 
         RED_QUICKSAND_PATCH_PLACED_FEATURE = RED_QUICKSAND_PATCH_CONFIGURED_FEATURE

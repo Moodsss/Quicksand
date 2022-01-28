@@ -48,9 +48,9 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0D, 0D, 0D, 1D, 0.9D, 1D);
 
-    public QuicksandBlock()
+    public QuicksandBlock(int fogColor)
     {
-        super(14076051, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        super(fogColor, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
     }
 
     @Override
@@ -235,6 +235,7 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
             }
         }
 
-        return entity.level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ())).is(ModBlocks.QUICKSAND.get());
+        BlockState state = entity.level.getBlockState(mpos.set(entity.getX(), eyeHeight, entity.getZ()));
+        return state.is(ModTags.QUICKSAND);
     }
 }

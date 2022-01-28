@@ -70,7 +70,7 @@ public abstract class EntityMixin implements EntityExt
     )
     public boolean onMove$is(BlockState instance, Block block)
     {
-        return instance.is(block) || instance.is(ModBlocks.QUICKSAND.get());
+        return instance.is(block) || instance.is(ModTags.QUICKSAND);
     }
 
     @Inject(method = "baseTick",

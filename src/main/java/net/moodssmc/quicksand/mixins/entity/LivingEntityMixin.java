@@ -44,7 +44,10 @@ public abstract class LivingEntityMixin extends EntityMixin
     public void onHandleRelativeFrictionAndCalculateMovementRETURN(Vec3 vec, float friction, CallbackInfoReturnable<Vec3> cir)
     {
         Vec3 vec3 = cir.getReturnValue();
-        if ((this.horizontalCollision || this.jumping) && (this.getBlockStateOn().is(ModBlocks.QUICKSAND.get())) && QuicksandBlock.canWalkUpon((Entity) (Object) this))
+        if ((this.horizontalCollision || this.jumping)
+                && (this.getBlockStateOn().is(ModTags.QUICKSAND) || this.getBlockStateOn().is(ModBlocks.RED_QUICKSAND.get()))
+                && QuicksandBlock.canWalkUpon((Entity) (Object) this)
+        )
         {
             cir.setReturnValue(new Vec3(vec3.x, 0.2D, vec3.z));
         }

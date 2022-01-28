@@ -19,5 +19,8 @@ public class EntityTypeTagProvider extends EntityTypeTagsProvider
     protected void addTags()
     {
         this.tag(ModTags.QUICKSAND_WALKABLE_MOBS).add(EntityType.WITHER).add(EntityType.HUSK);
+        this.tag(ModTags.QUICKSAND_HURTS_EXTRA_TYPES);
+        this.tag(ModTags.QUICKSAND_HURTS_LESS_TYPES);
+        this.tag(ModTags.QUICKSAND_IMMUNE_ENTITY_TYPES);
     }
 }

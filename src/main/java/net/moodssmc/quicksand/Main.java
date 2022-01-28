@@ -13,6 +13,7 @@ import net.moodssmc.quicksand.client.ClientEvents;
 import net.moodssmc.quicksand.core.*;
 import net.moodssmc.quicksand.datagen.BlockTagProvider;
 import net.moodssmc.quicksand.datagen.EntityTypeTagProvider;
+import net.moodssmc.quicksand.datagen.ItemTagProvider;
 import net.moodssmc.quicksand.datagen.LootTableProvider;
 
 @Mod(Reference.MOD_ID)
@@ -48,7 +49,9 @@ public class Main
     {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        dataGenerator.addProvider(new BlockTagProvider(dataGenerator, existingFileHelper));
+        BlockTagProvider blockTagProvider = new BlockTagProvider(dataGenerator, existingFileHelper);
+        dataGenerator.addProvider(blockTagProvider);
+        dataGenerator.addProvider(new ItemTagProvider(dataGenerator, blockTagProvider, existingFileHelper));
         dataGenerator.addProvider(new EntityTypeTagProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new LootTableProvider(dataGenerator));
     }

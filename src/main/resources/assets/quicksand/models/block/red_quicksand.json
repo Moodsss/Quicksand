@@ -1,0 +1,6 @@
+{
+  "parent": "quicksand:block/quicksand",
+  "textures": {
+    "texture": "quicksand:block/red_quicksand"
+  }
+}

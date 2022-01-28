@@ -14,7 +14,7 @@ public interface QuicksandCauldronInteraction extends CauldronInteraction
             CauldronInteraction.emptyBucket(world, pos, player, hand, stack, ModBlocks.QUICKSAND_CAULDRON.get().defaultBlockState(), SoundEvents.SAND_PLACE);
 
     CauldronInteraction FILL_RED_QUICKSAND = (state, world, pos, player, hand, stack) ->
-            CauldronInteraction.emptyBucket(world, pos, player, hand, stack, ModBlocks.QUICKSAND_CAULDRON_RED.get().defaultBlockState(), SoundEvents.SAND_PLACE);
+            CauldronInteraction.emptyBucket(world, pos, player, hand, stack, ModBlocks.RED_QUICKSAND_CAULDRON.get().defaultBlockState(), SoundEvents.SAND_PLACE);
 
     CauldronInteraction EMPTY_QUICKSAND = (state, world, pos, player, hand, stack) ->
             CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, new ItemStack(ModItems.QUICKSAND_BUCKET.get()), blockState -> true, SoundEvents.SAND_BREAK);

@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.moodssmc.quicksand.Reference;
 import net.moodssmc.quicksand.core.ModBlocks;
+import net.moodssmc.quicksand.core.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockTagProvider extends BlockTagsProvider
@@ -19,8 +20,9 @@ public class BlockTagProvider extends BlockTagsProvider
     @Override
     protected void addTags()
     {
-        this.tag(BlockTags.CAULDRONS).add(ModBlocks.QUICKSAND_CAULDRON.get());
-        this.tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(ModBlocks.QUICKSAND.get());
-        this.tag(BlockTags.SAND).add(ModBlocks.QUICKSAND.get());
+        this.tag(BlockTags.CAULDRONS).add(ModBlocks.QUICKSAND_CAULDRON.get()).add(ModBlocks.RED_QUICKSAND_CAULDRON.get());
+        this.tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(ModBlocks.QUICKSAND.get()).add(ModBlocks.RED_QUICKSAND.get());
+        this.tag(BlockTags.SAND).add(ModBlocks.QUICKSAND.get()).add(ModBlocks.RED_QUICKSAND.get());
+        this.tag(ModTags.QUICKSAND).add(ModBlocks.QUICKSAND.get()).add(ModBlocks.RED_QUICKSAND.get());
     }
 }

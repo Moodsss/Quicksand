@@ -19,7 +19,7 @@ public class ModItems
             () -> new BucketItem(ModBlocks.QUICKSAND.get()));
 
     public static final RegistryObject<Item> RED_QUICKSAND_BUCKET = REGISTER.register("red_quicksand_bucket",
-            () -> new BucketItem(ModBlocks.QUICKSAND_RED.get()));
+            () -> new BucketItem(ModBlocks.RED_QUICKSAND.get()));
 
     private ModItems()
     {
