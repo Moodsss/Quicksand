@@ -1,6 +1,5 @@
 package net.moodssmc.quicksand.core;
 
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

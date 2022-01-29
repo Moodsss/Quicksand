@@ -15,7 +15,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'quicksand'
-version = '1.3'
+version = '1.4'
 
 java {
     archivesBaseName = 'quicksand'

@@ -19,6 +19,7 @@ public class ShadersMixin
     @Shadow(remap = false)
     private static int isEyeInWater;
 
+    @SuppressWarnings("UnresolvedMixinReference")
     @Inject(method = "beginRender",
             at = @At(
                     value = "INVOKE",
@@ -28,6 +29,7 @@ public class ShadersMixin
     )
     private static void onBeginRender$getFluidInCamera(Minecraft minecraft, Camera activeRenderInfo, float partialTicks, long finishTimeNano, CallbackInfo ci)
     {
+        //noinspection ConstantConditions
         if(minecraft.level != null && activeRenderInfo.getEntity() != null)
         {
             BlockState facingState = CameraExt.getFacingBlockState(activeRenderInfo);

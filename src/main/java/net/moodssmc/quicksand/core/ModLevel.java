@@ -48,6 +48,7 @@ public class ModLevel extends FeatureUtils
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome());
 
+        //noinspection deprecation
         RED_QUICKSAND_PATCH_CONFIGURED_FEATURE = Feature.LAKE
                 .configured(new LakeFeature.Configuration(
                         BlockStateProvider.simple(ModBlocks.RED_QUICKSAND.get()),

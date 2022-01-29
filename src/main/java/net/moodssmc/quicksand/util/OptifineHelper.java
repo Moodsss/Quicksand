@@ -24,6 +24,7 @@ public class OptifineHelper
         try
         {
             Class<?> aClass = Class.forName("net.minecraft.client.renderer.FogRenderer");
+            //noinspection JavaReflectionMemberAccess
             Field field = aClass.getField("fogStandard");
             field.setAccessible(true);
             field.set(null, false);
