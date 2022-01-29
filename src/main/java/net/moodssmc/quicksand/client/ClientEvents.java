@@ -12,7 +12,6 @@ import net.moodssmc.quicksand.Config;
 import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.util.CameraExt;
 import net.moodssmc.quicksand.util.OptifineHelper;
-import org.apache.logging.log4j.LogManager;
 
 public class ClientEvents
 {
@@ -63,15 +62,15 @@ public class ClientEvents
                 BlockState facingState = CameraExt.getFacingBlockState(camera);
                 if(facingState != VOID_AIR)
                 {
-                    int fogColor = ((QuicksandBlock) facingState.getBlock()).getDustColor(facingState, camera.getEntity().level, camera.getBlockPosition());
+                    float[] fogColor = ((QuicksandBlock) facingState.getBlock()).getColor();
 
-                    float red = (fogColor >> 16 & 0xFF) * (1F / 0xFF);
-                    float green = (fogColor >> 8 & 0xFF) * (1F / 0xFF);
-                    float blue = (fogColor & 0xFF) * (1F / 0xFF);
+                    float red = fogColor[0] / 0xFF;
+                    float green = fogColor[1] / 0xFF;
+                    float blue = fogColor[2] / 0xFF;
 
                     event.setRed(red);
                     event.setGreen(green);
-                    event.setBlue(green);
+                    event.setBlue(blue);
 
                     if(OptifineHelper.isShadersEnabled())
                     {

@@ -47,9 +47,12 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0D, 0D, 0D, 1D, 0.9D, 1D);
 
-    public QuicksandBlock(int dustColor)
+    private final float[] color;
+
+    public QuicksandBlock(float[] color)
     {
-        super(dustColor, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        super(Mth.color(color[0] / 0xFF, color[1] / 0xFF, color[2] / 0xFF), BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        this.color = color;
     }
 
     @Override
@@ -218,6 +221,11 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
             return true;
         }
         return entity instanceof LivingEntity livingEntity && livingEntity.getItemBySlot(EquipmentSlot.FEET).is(ModTags.QUICKSAND_IMMUNE_WEARABLES);
+    }
+
+    public float[] getColor()
+    {
+        return this.color;
     }
 
     //[Vanilla Copy]

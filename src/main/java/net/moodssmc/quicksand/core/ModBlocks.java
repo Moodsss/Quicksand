@@ -14,9 +14,9 @@ public class ModBlocks
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, Reference.MOD_ID);
 
     public static final RegistryObject<Block> QUICKSAND = REGISTER.register("quicksand",
-            () -> new QuicksandBlock(Mth.color(219, 211, 160)));
+            () -> new QuicksandBlock(new float[] {219, 211, 160}));
     public static final RegistryObject<Block> RED_QUICKSAND = REGISTER.register("red_quicksand",
-            () -> new QuicksandBlock(Mth.color(169, 88, 33)));
+            () -> new QuicksandBlock(new float[] {169, 88, 33}));
 
     public static final RegistryObject<Block> QUICKSAND_CAULDRON = REGISTER.register("quicksand_cauldron",
             () -> new QuicksandCauldronBlock(QuicksandCauldronInteraction.QUICKSAND));

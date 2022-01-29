@@ -28,10 +28,13 @@ public class ShadersMixin
     )
     private static void onBeginRender$getFluidInCamera(Minecraft minecraft, Camera activeRenderInfo, float partialTicks, long finishTimeNano, CallbackInfo ci)
     {
-        BlockState facingState = CameraExt.getFacingBlockState(activeRenderInfo);
-        if(facingState != Blocks.VOID_AIR.defaultBlockState())
+        if(minecraft.level != null && activeRenderInfo.getEntity() != null)
         {
-            isEyeInWater = 3;
+            BlockState facingState = CameraExt.getFacingBlockState(activeRenderInfo);
+            if(facingState != Blocks.VOID_AIR.defaultBlockState())
+            {
+                isEyeInWater = 3;
+            }
         }
     }
 }
