@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "net.moodssmc.quicksand.mixins",
   "plugin": "net.moodssmc.quicksand.mixins.QuicksandMixinConfigPlugin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_13",
   "refmap": "quicksand.refmap.json",
   "mixins": [
     "entity.AbstractArrowMixin",
