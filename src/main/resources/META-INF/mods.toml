@@ -8,7 +8,7 @@ version = "${file.jarVersion}"
 displayName = "Quicksand"
 authors="Moodss"
 description = '''
-Adds vanilla friendly quicksand. That's it.
+Adds vanilla friendly quicksand to give the sandy biomes a tint of danger just like powered snow did for snowy biomes.
 '''
 
 [[dependencies.quicksand]]
