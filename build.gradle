@@ -14,13 +14,11 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-group = 'quicksand'
+group = 'net.moodssmc.quicksand'
+archivesBaseName = 'quicksand'
 version = '1.4'
 
-java {
-    archivesBaseName = 'quicksand'
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
-}
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings channel: 'official', version: '1.18.1'
@@ -81,7 +79,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.59'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.63'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
