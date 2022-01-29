@@ -1,0 +1,11 @@
+{
+  "block.quicksand.quicksand": "Sabbia",
+  "block.quicksand.red_quicksand": "Sabbia rossa",
+  "item.quicksand.quicksand_bucket": "Secchio di sabbie mobili",
+  "item.quicksand.red_quicksand_bucket": "Secchio di sabbie mobili rosse",
+  "block.quicksand.quicksand_cauldron": "Calderone di sabbie mobili",
+  "block.quicksand.red_quicksand_cauldron": "Calderone di sabbie mobili rosse",
+  "death.attack.quicksand": "%s è annegato/a nelle sabbie mobili",
+  "gamerule.quicksandDamage": "Infliggi il danno da sabbie mobili",
+  "config.quicksand.disableFog": "Disattiva nebbia sabbie mobili"
+}
