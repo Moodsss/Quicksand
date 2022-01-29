@@ -4,12 +4,15 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.moodssmc.quicksand.Config;
-import net.moodssmc.quicksand.blocks.QuicksandBlock;
+import net.moodssmc.quicksand.Main;
+import net.moodssmc.quicksand.api.FogColorable;
+import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.CameraExt;
 import net.moodssmc.quicksand.util.OptifineHelper;
 
@@ -28,6 +31,13 @@ public class ClientEvents
                 BlockState facingState = CameraExt.getFacingBlockState(camera);
                 if(facingState != VOID_AIR)
                 {
+                    Block facingBlock = facingState.getBlock();
+                    if(!((facingBlock instanceof FogColorable)))
+                    {
+                        Main.logger().debug("A block has been found with tag {}, but it doesn't extend from {}", ModTags.QUICKSAND, FogColorable.class);
+                        return;
+                    }
+
                     float start = 0F;
                     float end = 2F;
 
@@ -62,7 +72,14 @@ public class ClientEvents
                 BlockState facingState = CameraExt.getFacingBlockState(camera);
                 if(facingState != VOID_AIR)
                 {
-                    float[] fogColor = ((QuicksandBlock) facingState.getBlock()).getColor();
+                    Block facingBlock = facingState.getBlock();
+                    if(!((facingBlock instanceof FogColorable)))
+                    {
+                        Main.logger().debug("A block has been found with tag {}, but it doesn't extend from {}", ModTags.QUICKSAND, FogColorable.class);
+                        return;
+                    }
+
+                    float[] fogColor = ((FogColorable) facingState.getBlock()).color();
 
                     float red = fogColor[0] / 0xFF;
                     float green = fogColor[1] / 0xFF;

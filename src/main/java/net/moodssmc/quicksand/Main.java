@@ -17,10 +17,18 @@ import net.moodssmc.quicksand.datagen.BlockTagProvider;
 import net.moodssmc.quicksand.datagen.EntityTypeTagProvider;
 import net.moodssmc.quicksand.datagen.ItemTagProvider;
 import net.moodssmc.quicksand.datagen.LootTableProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(Reference.MOD_ID)
 public class Main
 {
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    public static Logger logger()
+    {
+        return LOGGER;
+    }
 
     public Main()
     {

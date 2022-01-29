@@ -30,6 +30,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.moodssmc.quicksand.api.FogColorable;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.core.ModItems;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +40,7 @@ import java.util.Optional;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class QuicksandBlock extends SandBlock implements BucketPickup
+public class QuicksandBlock extends SandBlock implements BucketPickup, FogColorable
 {
     private static final BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos();
 
@@ -223,7 +224,8 @@ public class QuicksandBlock extends SandBlock implements BucketPickup
         return entity instanceof LivingEntity livingEntity && livingEntity.getItemBySlot(EquipmentSlot.FEET).is(ModTags.QUICKSAND_IMMUNE_WEARABLES);
     }
 
-    public float[] getColor()
+    @Override
+    public float[] color()
     {
         return this.color;
     }

@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
@@ -84,7 +83,6 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
@@ -94,8 +92,7 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "Moodss",
-                "MixinConfigs"            : "quicksand.mixins.json",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "MixinConfigs"            : "quicksand.mixins.json"
         ])
     }
 }
