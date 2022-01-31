@@ -33,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.moodssmc.quicksand.api.FogColorable;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.core.ModItems;
+import net.moodssmc.quicksand.core.QuicksandMaterial;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,9 +51,14 @@ public class QuicksandBlock extends SandBlock implements BucketPickup, FogColora
 
     private final float[] color;
 
-    public QuicksandBlock(float[] color)
+    public QuicksandBlock()
     {
-        super(Mth.color(color[0] / 0xFF, color[1] / 0xFF, color[2] / 0xFF), BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        this(new float[] {219, 211, 160});
+    }
+
+    protected QuicksandBlock(float[] color)
+    {
+        super(Mth.color(color[0] / 0xFF, color[1] / 0xFF, color[2] / 0xFF), BlockBehaviour.Properties.of(QuicksandMaterial.INSTANCE).strength(0.6F).sound(SoundType.SAND).dynamicShape());
         this.color = color;
     }
 
@@ -68,7 +74,7 @@ public class QuicksandBlock extends SandBlock implements BucketPickup, FogColora
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
                 if (flag && random.nextBoolean())
                 {
-                    level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, state), entity.getX(), entity.getY() + 1, entity.getZ(), (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F), 0.05F, (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F));
+                    level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, state).setPos(mpos.set(entity.getX(), entity.getY() + 1, entity.getZ())), entity.getX(), entity.getY() + 1, entity.getZ(), (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F), 0.05F, (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F));
                 }
             }
         }

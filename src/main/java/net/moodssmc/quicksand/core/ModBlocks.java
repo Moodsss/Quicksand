@@ -7,15 +7,14 @@ import net.minecraftforge.registries.RegistryObject;
 import net.moodssmc.quicksand.Reference;
 import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.blocks.QuicksandCauldronBlock;
+import net.moodssmc.quicksand.blocks.RedQuicksandBlock;
 
 public class ModBlocks
 {
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, Reference.MOD_ID);
 
-    public static final RegistryObject<Block> QUICKSAND = REGISTER.register("quicksand",
-            () -> new QuicksandBlock(new float[] {219, 211, 160}));
-    public static final RegistryObject<Block> RED_QUICKSAND = REGISTER.register("red_quicksand",
-            () -> new QuicksandBlock(new float[] {169, 88, 33}));
+    public static final RegistryObject<Block> QUICKSAND = REGISTER.register("quicksand", QuicksandBlock::new);
+    public static final RegistryObject<Block> RED_QUICKSAND = REGISTER.register("red_quicksand", RedQuicksandBlock::new);
 
     public static final RegistryObject<Block> QUICKSAND_CAULDRON = REGISTER.register("quicksand_cauldron",
             () -> new QuicksandCauldronBlock(QuicksandCauldronInteraction.QUICKSAND));
