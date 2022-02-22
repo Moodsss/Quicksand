@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Pseudo
-@Mixin(targets = "net.optifine.shaders.Shaders")
+@Mixin(targets = "net.optifine.shaders.Shaders", remap = false)
 public class ShadersMixin
 {
     @Shadow(remap = false)

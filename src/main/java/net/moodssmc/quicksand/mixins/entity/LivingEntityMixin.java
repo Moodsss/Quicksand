@@ -7,10 +7,10 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.moodssmc.quicksand.blocks.QuicksandBlock;
 import net.moodssmc.quicksand.core.ModBlocks;
 import net.moodssmc.quicksand.core.ModDamageSources;
 import net.moodssmc.quicksand.core.ModTags;
+import net.moodssmc.quicksand.util.EntityHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -46,7 +46,7 @@ public abstract class LivingEntityMixin extends EntityMixin
         Vec3 vec3 = cir.getReturnValue();
         if ((this.horizontalCollision || this.jumping)
                 && (this.getBlockStateOn().is(ModTags.QUICKSAND) || this.getBlockStateOn().is(ModBlocks.RED_QUICKSAND.get()))
-                && QuicksandBlock.canWalkUpon((Entity) (Object) this)
+                && EntityHelper.canWalkUpon((Entity) (Object) this)
         )
         {
             cir.setReturnValue(new Vec3(vec3.x, 0.2D, vec3.z));

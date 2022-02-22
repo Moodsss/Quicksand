@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.moodssmc.quicksand.core.ModDamageSources;
 import net.moodssmc.quicksand.core.ModGameRules;
 import net.moodssmc.quicksand.mixins.entity.LivingEntityMixin;
-import net.moodssmc.quicksand.util.EntityExt;
+import net.moodssmc.quicksand.util.EntityHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,13 +18,13 @@ public abstract class PlayerMixin extends LivingEntityMixin
     @Redirect(method = "setEntityOnShoulder", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isInWater()Z"))
     public boolean onSetEntityOnShoulder$isInWater(Player instance)
     {
-        return instance.isInWater() || EntityExt.isInQuicksand(instance);
+        return instance.isInWater() || EntityHelper.isInsideQuicksand(instance);
     }
 
     @Redirect(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isSleeping()Z"))
     public boolean onAiStep$isSleeping(Player instance)
     {
-        return instance.isSleeping() || EntityExt.isInQuicksand(instance);
+        return instance.isSleeping() || EntityHelper.isInsideQuicksand(instance);
     }
 
     @Inject(method = "isInvulnerableTo", at = @At("RETURN"), cancellable = true)
