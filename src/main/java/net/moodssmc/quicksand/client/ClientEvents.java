@@ -64,9 +64,9 @@ public class ClientEvents
                 {
                     int color = ((AbstractBlock) facingState.getBlock()).getDustColor(facingState, camera.getEntity().getLevel(), camera.getBlockPosition());
 
-                    float red = Mth.clamp((color >> 16) / 0xFF, 0, 1);
-                    float green = Mth.clamp((color >> 8) / 0xFF, 0, 1);
-                    float blue = Mth.clamp(color / 0xFF, 0, 1);
+                    float red = ((float) (color >> 16 & 0xFF)) / 0xFF;
+                    float green = ((float) (color >> 8 & 0xFF)) / 0xFF;
+                    float blue = ((float) (color & 0xFF)) / 0xFF;
 
                     event.setRed(red);
                     event.setGreen(green);
