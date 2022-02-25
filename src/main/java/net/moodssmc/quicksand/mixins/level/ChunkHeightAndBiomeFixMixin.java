@@ -20,9 +20,9 @@ public class ChunkHeightAndBiomeFixMixin
 
     static
     {
-        BLOCKS_BEFORE_FEATURE_STATUS = Sets.newHashSet(BLOCKS_BEFORE_FEATURE_STATUS);
-        BLOCKS_BEFORE_FEATURE_STATUS.add("quicksand:quicksand");
-        BLOCKS_BEFORE_FEATURE_STATUS.add("quicksand:red_quicksand");
-        BLOCKS_BEFORE_FEATURE_STATUS = ImmutableSet.copyOf(BLOCKS_BEFORE_FEATURE_STATUS);
+        Set<String> set  = Sets.newHashSet(BLOCKS_BEFORE_FEATURE_STATUS);
+        set.add("quicksand:quicksand");
+        set.add("quicksand:red_quicksand");
+        BLOCKS_BEFORE_FEATURE_STATUS = ImmutableSet.copyOf(set);
     }
 }
