@@ -19,7 +19,7 @@ public class CommonSetup
         QuicksandCauldronInteraction.init();
         ModLevel.init();
 
-        DispenseItemBehavior behavior =  new DispenseItemBehavior() {
+        DispenseItemBehavior behavior = new DispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
             @Override

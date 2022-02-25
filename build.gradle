@@ -15,7 +15,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 group = 'net.moodssmc.quicksand'
 archivesBaseName = 'quicksand'
-version = '1.4'
+version = '1.5'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

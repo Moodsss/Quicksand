@@ -22,12 +22,12 @@
     "level.ChunkHeightAndBiomeFixMixin",
     "level.block.PointedDripstoneBlockMixin"
   ],
-  "injectors": {
-    "defaultRequire": 1
-  },
   "client": [
     "client.AbstractZombieRendererMixin",
     "client.CameraMixin",
     "client.ShadersMixin"
-  ]
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

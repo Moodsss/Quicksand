@@ -8,6 +8,7 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.moodssmc.quicksand.core.ModTags;
 import net.moodssmc.quicksand.util.EntityExt;
 import org.spongepowered.asm.mixin.Final;
@@ -60,6 +61,7 @@ public abstract class EntityMixin implements EntityExt
     @Nullable
     public abstract Entity getVehicle();
 
+    @Shadow private Vec3 position;
     @Unique
     protected boolean isInQuicksand;
 
@@ -101,7 +103,7 @@ public abstract class EntityMixin implements EntityExt
             }
         }
 
-        this.isInQuicksand = this.getBlockStateOn().is(ModTags.QUICKSAND);
+        this.isInQuicksand = this.level.getBlockState(new BlockPos(this.position.x, eyeHeight, this.position.z)).is(ModTags.QUICKSAND);
     }
 
     @Unique
