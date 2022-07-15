@@ -20,7 +20,7 @@ version = '1.5'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -78,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.79'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.60'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

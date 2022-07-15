@@ -1,24 +1,23 @@
 package net.moodssmc.quicksand.core;
 
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.moodssmc.quicksand.Reference;
 
 public class ModTags
 {
-    public static final Tag.Named<EntityType<?>> QUICKSAND_WALKABLE_MOBS;
-    public static final Tag.Named<EntityType<?>> QUICKSAND_HURTS_EXTRA_TYPES;
-    public static final Tag.Named<EntityType<?>> QUICKSAND_HURTS_LESS_TYPES;
-    public static final Tag.Named<EntityType<?>> QUICKSAND_IMMUNE_ENTITY_TYPES;
+    public static final TagKey<EntityType<?>> QUICKSAND_WALKABLE_MOBS;
+    public static final TagKey<EntityType<?>> QUICKSAND_HURTS_EXTRA_TYPES;
+    public static final TagKey<EntityType<?>> QUICKSAND_HURTS_LESS_TYPES;
+    public static final TagKey<EntityType<?>> QUICKSAND_IMMUNE_ENTITY_TYPES;
 
-    public static final Tag.Named<Item> QUICKSAND_IMMUNE_WEARABLES;
-    public static final Tag.Named<Block> QUICKSAND;
+    public static final TagKey<Item> QUICKSAND_IMMUNE_WEARABLES;
+    public static final TagKey<Block> QUICKSAND;
 
     static
     {
@@ -26,13 +25,23 @@ public class ModTags
         QUICKSAND_HURTS_EXTRA_TYPES = register("quicksand_hurts_extra_types");
         QUICKSAND_HURTS_LESS_TYPES = register("quicksand_hurts_less_types");
         QUICKSAND_IMMUNE_ENTITY_TYPES = register("quicksand_immune_entity_types");
-        QUICKSAND = BlockTags.bind(Reference.MOD_ID + ":quicksand");
-        QUICKSAND_IMMUNE_WEARABLES = ItemTags.bind(Reference.MOD_ID + ":quicksand_immune_wearables");
+        QUICKSAND = registerBlock("quicksand");
+        QUICKSAND_IMMUNE_WEARABLES = registerItem("quicksand_immune_wearables");
     }
 
-    protected static Tag.Named<EntityType<?>> register(String name)
+    protected static TagKey<EntityType<?>> register(String name)
     {
-        return EntityTypeTags.bind(Reference.MOD_ID + ":" + name);
+        return TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(Reference.MOD_ID, name));
+    }
+
+    protected static TagKey<Item> registerItem(String name)
+    {
+        return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Reference.MOD_ID, name));
+    }
+
+    protected static TagKey<Block> registerBlock(String name)
+    {
+        return TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Reference.MOD_ID, name));
     }
 
     @SuppressWarnings("EmptyMethod")

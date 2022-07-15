@@ -25,7 +25,7 @@ public class ShadersMixin
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/Camera;getFluidInCamera()Lnet/minecraft/world/level/material/FogType;",
                     shift = At.Shift.AFTER
-            )
+            ), remap = false
     )
     private static void onBeginRender$getFluidInCamera(Minecraft minecraft, Camera activeRenderInfo, float partialTicks, long finishTimeNano, CallbackInfo ci)
     {

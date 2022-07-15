@@ -109,7 +109,7 @@ public abstract class EntityMixin implements EntityExt
     @Unique
     protected boolean canSuffocateFromQuicksand()
     {
-        return !ModTags.QUICKSAND_IMMUNE_ENTITY_TYPES.contains(this.getType());
+        return !this.getType().is(ModTags.QUICKSAND_IMMUNE_ENTITY_TYPES);
     }
 
     @Override

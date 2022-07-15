@@ -19,8 +19,7 @@
     "entity.monster.SkeletonMixin",
     "entity.monster.ZombieMixin",
     "entity.player.PlayerMixin",
-    "level.ChunkHeightAndBiomeFixMixin",
-    "level.block.PointedDripstoneBlockMixin"
+    "level.ChunkHeightAndBiomeFixMixin"
   ],
   "client": [
     "client.AbstractZombieRendererMixin",

@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.placement.PlacementFilter;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.moodssmc.quicksand.core.ModLevel;
+import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -36,8 +37,16 @@ public class QuicksandPlacementFilter extends PlacementFilter
     protected boolean shouldPlace(@NotNull PlacementContext ctx, @NotNull Random random, @NotNull BlockPos origin)
     {
         double noise = getOrUpdateNoise(ctx.getLevel()).getValue(origin.getX(), origin.getY(), origin.getZ());
+
         //noinspection ConditionCoveredByFurtherCondition
-        return noise >= 0.45D && noise <= 0.58D || noise >= 0.35D && noise <= 0.6D;
+        boolean placeable = noise >= 0.45D && noise <= 0.58D || noise >= 0.35D && noise <= 0.6D;
+
+        if(placeable)
+        {
+            LogManager.getLogger("Quicksand").info("Quicksand spawned at origin {}", origin.toString());
+        }
+
+        return placeable;
     }
 
     protected NormalNoise getOrUpdateNoise(WorldGenLevel level)
@@ -46,7 +55,7 @@ public class QuicksandPlacementFilter extends PlacementFilter
         if(this.prevSeed != newSeed)
         {
             this.prevSeed = newSeed;
-            this.noise = Noises.instantiate(RegistryAccess.builtin().ownedRegistry(Registry.NOISE_REGISTRY).orElseThrow(),
+            this.noise = Noises.instantiate(RegistryAccess.builtinCopy().ownedRegistry(Registry.NOISE_REGISTRY).orElseThrow(),
                     WorldgenRandom.Algorithm.XOROSHIRO.newInstance(this.prevSeed).forkPositional(), ModLevel.QUICKSAND_NOISE);
         }
         return this.noise;

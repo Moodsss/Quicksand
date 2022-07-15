@@ -11,12 +11,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BucketPickup;
-import net.minecraft.world.level.block.SandBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -41,6 +41,8 @@ public abstract class AbstractBlock extends SandBlock implements BucketPickup
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0D, 0D, 0D, 1D, 0.9D, 1D);
 
+    protected static final Vec3 VELOCITY = new Vec3(0.9F, 1.5D, 0.9F);
+
     protected AbstractBlock(int color)
     {
         super(color, BlockBehaviour.Properties.of(QuicksandMaterial.INSTANCE).strength(0.6F).sound(SoundType.SAND).dynamicShape());
@@ -52,7 +54,7 @@ public abstract class AbstractBlock extends SandBlock implements BucketPickup
         Random random = level.getRandom();
         if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this))
         {
-            entity.makeStuckInBlock(state, new Vec3(0.9F, 1.5D, 0.9F));
+            entity.makeStuckInBlock(state, VELOCITY);
             if (level.isClientSide)
             {
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
@@ -153,6 +155,19 @@ public abstract class AbstractBlock extends SandBlock implements BucketPickup
     public Optional<SoundEvent> getPickupSound()
     {
         return Optional.of(SoundEvents.SAND_BREAK);
+    }
+
+    @Override
+    @NotNull
+    public ItemStack pickupBlock(@NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockState state)
+    {
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
+        if (!level.isClientSide())
+        {
+            level.levelEvent(2001, pos, Block.getId(state));
+        }
+
+        return new ItemStack(this);
     }
 
     @Nullable
