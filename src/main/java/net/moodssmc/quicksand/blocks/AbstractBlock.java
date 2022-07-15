@@ -41,11 +41,17 @@ public abstract class AbstractBlock extends SandBlock implements BucketPickup
     private static final VoxelShape EMPTY_SHAPE = Shapes.empty();
     private static final VoxelShape FALLING_COLLISION_SHAPE = Shapes.box(0D, 0D, 0D, 1D, 0.9D, 1D);
 
-    protected static final Vec3 VELOCITY = new Vec3(0.9F, 1.5D, 0.9F);
+    private final Vec3 velocity;
 
     protected AbstractBlock(int color)
     {
+        this(color, new Vec3(0.9F, 1.5D, 0.9F));
+    }
+
+    protected AbstractBlock(int color, Vec3 velocity)
+    {
         super(color, BlockBehaviour.Properties.of(QuicksandMaterial.INSTANCE).strength(0.6F).sound(SoundType.SAND).dynamicShape());
+        this.velocity = velocity;
     }
 
     @Override
@@ -54,13 +60,20 @@ public abstract class AbstractBlock extends SandBlock implements BucketPickup
         Random random = level.getRandom();
         if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this))
         {
-            entity.makeStuckInBlock(state, VELOCITY);
+            entity.makeStuckInBlock(state, this.velocity);
             if (level.isClientSide)
             {
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
                 if (flag && random.nextBoolean())
                 {
-                    level.addParticle(new BlockParticleOption(ParticleTypes.FALLING_DUST, state).setPos(new BlockPos(entity.getX(), entity.getY() + 1, entity.getZ())), entity.getX(), entity.getY() + 1, entity.getZ(), (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F), 0.05F, (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F));
+                    BlockParticleOption particle = new BlockParticleOption(ParticleTypes.FALLING_DUST, state)
+                            .setPos(new BlockPos(entity.getX(), entity.getY() + 1, entity.getZ()));
+
+                    level.addParticle(particle,
+                            entity.getX(), entity.getY() + 1, entity.getZ(),
+                            (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F),
+                            0.05F,
+                            (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F));
                 }
             }
         }

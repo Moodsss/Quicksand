@@ -1,13 +1,9 @@
 package net.moodssmc.quicksand;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -28,11 +24,12 @@ public class Main
     public Main()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
+
         ModBlocks.REGISTER.register(bus);
         ModItems.REGISTER.register(bus);
         ModTags.init();
         ModGameRules.init();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
 
         bus.addListener(this::onCommonSetup);
         bus.addListener(this::onClientSetup);
@@ -58,18 +55,5 @@ public class Main
         dataGenerator.addProvider(new ItemTagProvider(dataGenerator, blockTagProvider, existingFileHelper));
         dataGenerator.addProvider(new EntityTypeTagProvider(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new LootTableProvider(dataGenerator));
-    }
-
-    @SubscribeEvent
-    public void onBiomeLoadEvent(BiomeLoadingEvent event)
-    {
-        if(event.getCategory() == Biome.BiomeCategory.BEACH || event.getCategory() == Biome.BiomeCategory.DESERT)
-        {
-            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.QUICKSAND_PATCH_PLACED_FEATURE);
-        }
-        else if(event.getCategory() == Biome.BiomeCategory.MESA)
-        {
-            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.RED_QUICKSAND_PATCH_PLACED_FEATURE);
-        }
     }
 }

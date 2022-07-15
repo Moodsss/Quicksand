@@ -9,12 +9,7 @@ import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 public class CommonSetup
@@ -23,7 +18,7 @@ public class CommonSetup
     {
         QuicksandCauldronInteraction.init();
         ModLevel.init();
-        MinecraftForge.EVENT_BUS.register(new CommonSetup());
+        QuicksandFeatures.init();
 
         DispenseItemBehavior behavior = new DispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
@@ -50,18 +45,5 @@ public class CommonSetup
 
         DispenserBlock.registerBehavior(ModItems.QUICKSAND_BUCKET::get, behavior);
         DispenserBlock.registerBehavior(ModItems.RED_QUICKSAND_BUCKET::get, behavior);
-    }
-
-    @SubscribeEvent
-    public void onBiomeLoadEvent(BiomeLoadingEvent event)
-    {
-        if(event.getCategory() == Biome.BiomeCategory.BEACH || event.getCategory() == Biome.BiomeCategory.DESERT)
-        {
-            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.QUICKSAND_PATCH_PLACED_FEATURE);
-        }
-        else if(event.getCategory() == Biome.BiomeCategory.MESA)
-        {
-            event.getGeneration().addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModLevel.RED_QUICKSAND_PATCH_PLACED_FEATURE);
-        }
     }
 }
